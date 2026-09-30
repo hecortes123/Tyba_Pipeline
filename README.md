@@ -217,7 +217,7 @@ El motor CDC/SCD2 vive en Python, es nuestro core.
   `accepted_values` en `type` y `change_type`, y `unique` sobre `movement_key` en el
   estado vigente (prueba de que hay exactamente una versión vigente por movimiento).
 - **Tests singulares** que codifican las **invariantes del SCD2** (`dbt/tests/`):
-  - `assert_una_version_vigente_por_movimiento` — minimo un `is_current` por clave.
+  - `assert_una_version_vigente_por_movimiento` — máximo un `is_current` por clave.
   - `assert_version_unica_por_corte` — `(movement_key, valid_from)` único.
   - `assert_coherencia_vigencia` — vigente ⇒ sin `valid_to`; cerrada ⇒ con `valid_to`.
 - **Documentación + grafo de linaje**: `make dbt-docs` (o `dbt docs serve`) levanta el
