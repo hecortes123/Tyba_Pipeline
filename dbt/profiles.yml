@@ -1,0 +1,10 @@
+tyba:
+  target: prod
+  outputs:
+    prod:
+      type: duckdb
+      # Misma base que produce el motor Python. El orquestador exporta DB_PATH
+      # (ruta absoluta); el default funciona al correr dbt desde la raíz del repo.
+      path: "{{ env_var('DB_PATH', 'data/output/tyba.duckdb') }}"
+      schema: analytics
+      threads: 4

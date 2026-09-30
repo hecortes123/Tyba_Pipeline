@@ -1,0 +1,73 @@
+version: 2
+
+# `core` lo puebla el motor CDC/SCD2 (Python). dbt lo consume como source y le
+# aplica tests declarativos: así el histórico queda validado en cada corrida.
+sources:
+  - name: core
+    description: >
+      Capa consolidada poblada por el motor CDC/SCD Tipo 2. Contiene el
+      histórico versionado, la cuarentena y la bitácora de cambios.
+    schema: core
+    tables:
+      - name: movimientos_historico
+        description: >
+          Histórico SCD Tipo 2 de movimientos. Una fila por versión de cada
+          movimiento (identidad = movement_key), con vigencia valid_from/valid_to,
+          banderas is_current/is_deleted y el evento change_type que la originó.
+        columns:
+          - name: movement_key
+            description: Identidad del movimiento (business_key_hash + occurrence_seq).
+            tests: [not_null]
+          - name: business_key_hash
+            description: Hash de la clave de negocio (id_cliente, mov_date, product, type, fund).
+            tests: [not_null]
+          - name: id_cliente
+            description: Identificador de cliente (normalizado a mayúsculas).
+            tests: [not_null]
+          - name: mov_date
+            description: Fecha del movimiento (parseada a DATE).
+            tests: [not_null]
+          - name: product
+            description: Producto asociado (normalizado).
+            tests: [not_null]
+          - name: type
+            description: Dirección del movimiento, canonizada.
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["ENTRADA", "SALIDA"]
+          - name: fund
+            description: Fondo de la inversión (normalizado).
+            tests: [not_null]
+          - name: change_type
+            description: Evento que originó la versión.
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["INSERT", "UPDATE", "DELETE"]
+          - name: is_current
+            description: Marca la versión vigente del movimiento.
+            tests: [not_null]
+          - name: is_deleted
+            description: Tombstone de eliminación (la última foto conocida).
+            tests: [not_null]
+          - name: valid_from
+            description: Fecha de corte en que la versión entró en vigencia.
+            tests: [not_null]
+
+      - name: change_log
+        description: Bitácora de eventos CDC (uno por INSERT/UPDATE/DELETE por corte).
+        columns:
+          - name: movement_key
+            tests: [not_null]
+          - name: change_type
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["INSERT", "UPDATE", "DELETE"]
+
+      - name: movimientos_cuarentena
+        description: Registros que rompen la identidad (hard-fail), excluidos del histórico.

@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: movimientos_vigentes
+    description: >
+      Estado vigente del negocio: una fila por movimiento activo (última versión
+      no eliminada). movement_key debe ser ÚNICO aquí — es la prueba de que el
+      SCD2 mantiene exactamente una versión vigente por movimiento.
+    columns:
+      - name: movement_key
+        description: Identidad del movimiento.
+        tests:
+          - unique
+          - not_null
+      - name: type
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["ENTRADA", "SALIDA"]
+
+  - name: flujo_por_producto
+    description: Flujo neto (entradas − salidas) por producto sobre el estado vigente.
+    columns:
+      - name: product
+        description: Producto asociado al movimiento.
+        tests:
+          - unique
+          - not_null
+      - name: flujo_neto
+        description: Suma de signed_amount (ENTRADA +, SALIDA −).
+
+  - name: flujo_por_fondo
+    description: Flujo neto por fondo sobre el estado vigente.
+    columns:
+      - name: fund
+        description: Fondo de la inversión.
+        tests:
+          - unique
+          - not_null

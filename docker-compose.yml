@@ -1,0 +1,10 @@
+services:
+  pipeline:
+    build: .
+    container_name: tyba_pipeline
+    # Monta ./data para leer los parquet de raw/ y persistir la base + insights
+    # en output/ en el host. Cero configuración adicional.
+    volumes:
+      - ./data:/app/data
+    # `docker compose up --build` ejecuta el pipeline completo y termina.
+    command: ["python", "-m", "src.pipeline", "--all"]

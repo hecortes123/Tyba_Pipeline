@@ -1,0 +1,155 @@
+{
+  "cdc_por_corte": [
+    {
+      "cut_label": "T",
+      "cut_date": "2024-11-01",
+      "nuevos": 50000,
+      "corregidos": 0,
+      "eliminados": 0
+    },
+    {
+      "cut_label": "T1",
+      "cut_date": "2024-11-02",
+      "nuevos": 9991,
+      "corregidos": 3888,
+      "eliminados": 10991
+    }
+  ],
+  "estado_vigente": {
+    "movimientos_vigentes": 49000,
+    "eliminados_vigentes": 10991,
+    "versiones_totales": 74870,
+    "clientes_activos": 3000
+  },
+  "flujo_por_producto": [
+    {
+      "product": "DIVISAS",
+      "n_movimientos": 6107,
+      "flujo_neto": 18940076738.770023,
+      "total_entradas": 75138417533.61995,
+      "total_salidas": 62921159426.6899
+    },
+    {
+      "product": "CDT",
+      "n_movimientos": 6181,
+      "flujo_neto": 18721810387.190033,
+      "total_entradas": 76419287643.12999,
+      "total_salidas": 63699954905.66003
+    },
+    {
+      "product": "BONOS",
+      "n_movimientos": 6169,
+      "flujo_neto": 17928622887.719936,
+      "total_entradas": 75886923817.14003,
+      "total_salidas": 64889050401.360054
+    },
+    {
+      "product": "ETF",
+      "n_movimientos": 6065,
+      "flujo_neto": 16428332658.27003,
+      "total_entradas": 73906186583.06978,
+      "total_salidas": 63183236434.24005
+    },
+    {
+      "product": "FONDO DE PENSIÓN",
+      "n_movimientos": 6083,
+      "flujo_neto": 15172266532.629957,
+      "total_entradas": 72787369996.21004,
+      "total_salidas": 64114511723.24007
+    },
+    {
+      "product": "ACCIONES",
+      "n_movimientos": 6079,
+      "flujo_neto": 14700767094.850023,
+      "total_entradas": 72745479336.95,
+      "total_salidas": 64713897170.22006
+    },
+    {
+      "product": "CUENTA DE AHORRO",
+      "n_movimientos": 6221,
+      "flujo_neto": 12691224503.929953,
+      "total_entradas": 73918114979.19002,
+      "total_salidas": 67296817930.57998
+    },
+    {
+      "product": "FONDO DE INVERSIÓN",
+      "n_movimientos": 6095,
+      "flujo_neto": 12439537763.259958,
+      "total_entradas": 74256469995.99019,
+      "total_salidas": 67428964105.06993
+    }
+  ],
+  "por_tipo": [
+    {
+      "type": "ENTRADA",
+      "n_movimientos": 27100,
+      "total_monto": 595058249885.2975
+    },
+    {
+      "type": "SALIDA",
+      "n_movimientos": 21900,
+      "total_monto": 518247592097.0595
+    }
+  ],
+  "calidad_vigente": {
+    "total": 49000,
+    "amount_nulos": 1440,
+    "amount_ceros": 903,
+    "amount_negativos": 989,
+    "fecha_reformateada": 3433,
+    "type_recodificado": 1929
+  },
+  "cuarentena_total": 0,
+  "top_clientes": [
+    {
+      "id_cliente": "CLI001058",
+      "n_movimientos": 32,
+      "volumen": 846560368.2400001
+    },
+    {
+      "id_cliente": "CLI000021",
+      "n_movimientos": 30,
+      "volumen": 804896686.49
+    },
+    {
+      "id_cliente": "CLI002487",
+      "n_movimientos": 28,
+      "volumen": 797963069.31
+    },
+    {
+      "id_cliente": "CLI000434",
+      "n_movimientos": 24,
+      "volumen": 794577193.5500001
+    },
+    {
+      "id_cliente": "CLI002770",
+      "n_movimientos": 26,
+      "volumen": 792710060.01
+    },
+    {
+      "id_cliente": "CLI000975",
+      "n_movimientos": 30,
+      "volumen": 788604141.7600001
+    },
+    {
+      "id_cliente": "CLI001935",
+      "n_movimientos": 31,
+      "volumen": 761725134.03
+    },
+    {
+      "id_cliente": "CLI000075",
+      "n_movimientos": 26,
+      "volumen": 758524108.8799999
+    },
+    {
+      "id_cliente": "CLI002675",
+      "n_movimientos": 28,
+      "volumen": 758431202.11
+    },
+    {
+      "id_cliente": "CLI001315",
+      "n_movimientos": 24,
+      "volumen": 746790905.5299999
+    }
+  ]
+}
