@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Unit tests — motor CDC/SCD2 (pytest)
+        run: pytest tests/ -v
+
+      - name: Pipeline end-to-end + quality gate dbt (build + tests)
+        run: python -m src.pipeline --all --reset
+
+      - name: Publicar insights como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: insights
+          path: data/output/insights.*
